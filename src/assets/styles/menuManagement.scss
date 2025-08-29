@@ -1,0 +1,51 @@
+.menu-management {
+  padding: 2rem;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--secondary);
+  }
+
+  .add-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .btn {
+      flex: 0 0 auto;
+    }
+  }
+
+  .dish-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    tr:hover {
+      background: #f9f9f9;
+    }
+
+    .btn-danger {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+    }
+  }
+}

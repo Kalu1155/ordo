@@ -1,0 +1,67 @@
+@use "nav.scss";
+@use "landing.scss";
+@use "menu.scss";
+@use "reservations.scss";
+@use "auth.scss";
+@use "dashbord.scss";
+@use "menuManagement.scss";
+@use "reservationsManagement.scss";
+@use "ordersManagement.scss";
+@use "reports.scss";
+@use "staffDashboard.scss";
+@use "cart.scss";
+@use "checkout.scss";
+@use "orderHistory.scss";
+@use "profile.scss";
+@use "customerLayout.scss";
+@use "dashboardLayout.scss";
+@use "global.scss";
+@use "./variables" as *;
+@use 'home.scss';
+
+:root {
+  --primary: #4CAF50; // green (brand)
+  --secondary: #333;  // dark text
+  --light: #f8f9fa;   // background
+  --danger: #e74c3c;  // red (alerts)
+  --font: 'Poppins', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+body {
+  font-family: var(--font);
+  background: var(--light);
+  color: var(--secondary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}

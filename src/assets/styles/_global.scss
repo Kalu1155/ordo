@@ -1,0 +1,27 @@
+/* Breakpoints */
+$mobile: 768px; // tablet & below
+$small-mobile: 480px; // phones
+
+/* Default body */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f9f9f9;
+}
+
+.Toastify__toast {
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.Toastify__toast--success {
+  background: #2ecc71;
+}
+
+.Toastify__toast--error {
+  background: #e74c3c;
+}
+
+.Toastify__toast--info {
+  background: #3498db;
+}

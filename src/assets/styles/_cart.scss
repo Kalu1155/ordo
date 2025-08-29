@@ -1,0 +1,58 @@
+
+@use "./variables" as *;
+
+.cart {
+  padding: 2rem;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+  }
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+
+    th, td {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    tr:hover {
+      background: #f9f9f9;
+    }
+
+    .btn-danger {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  h3 {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+    color: var(--primary);
+  }
+
+  .btn {
+    margin-right: 1rem;
+  }
+}
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  @media (max-width: $mobile) {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

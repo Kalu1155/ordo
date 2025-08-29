@@ -1,0 +1,92 @@
+@use "./variables" as *;
+
+.landing {
+  .hero {
+    text-align: center;
+    padding: 7rem 1rem;
+    // background: linear-gradient(135deg, var(--primary), #6dd5ed);
+    background-image: url(/src/assets/img/food_3.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+  }
+  .sec-btn {
+    background: linear-gradient(135deg, var(--primary), #6dd5ed);
+    padding: 50px;
+    .cta-buttons {
+      display: flex;
+      justify-content: space-around;
+      gap: 1rem;
+
+      .btn {
+        background: #fff;
+        color: var(--secondary);
+        transition: 0.3s;
+
+        &:hover {
+          background: var(--secondary);
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .landing {
+    .hero {
+      text-align: center;
+      padding: 7rem 1rem;
+      // background: linear-gradient(135deg, var(--primary), #6dd5ed);
+      background-image: url(/src/assets/img/food_3.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+
+        .btn {
+          background: #fff;
+          color: var(--secondary);
+          transition: 0.3s;
+
+          &:hover {
+            background: var(--secondary);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
