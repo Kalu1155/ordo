@@ -3,6 +3,7 @@ import { FaUtensils } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { RiCloseLine, RiMenu3Line } from "react-icons/ri";
 import { AuthContext } from "../context/AuthContext";
+// import logo from "../assets/img/logo.png"
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,8 +13,9 @@ const Navbar = () => {
     <div className="navbar">
       <Link to="/">
         <div className="logo">
+          {/* <img src={logo} alt="" /> */}
           <FaUtensils size={24} color="var(--primary)" />
-          <span>RestoManage 🍴</span>
+          <span>RestoManage</span>
         </div>
       </Link>
 

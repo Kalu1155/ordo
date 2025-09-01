@@ -19,7 +19,11 @@ const ReservationPage = () => {
     });
   };
 
- 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Reservation submitted:", formData);
+    toast.success("Reservation request submitted ✅");
+  };
 
   return (
     <>

@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import Footer from "../component/Footer";
 
 const AdminLayout = () => {
+  const { user, logout } = useContext(AuthContext);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const navItems = [
     { path: "/admin", label: "Dashboard", icon: "🏠" }, // 👈 added dashboard
     { path: "/admin/menu", label: "Menu", icon: "📋" },
@@ -11,36 +17,58 @@ const AdminLayout = () => {
   ];
 
   return (
-    <div className="admin-layout">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <h2 className="logo">Admin</h2>
-        <nav>
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              end // 👈 ensures exact match for /admin
-            >
-              <span className="icon">{item.icon}</span>
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-      </aside>
+    <>
+      <div className="admin-layout">
+        {/* Sidebar */}
+        <aside className="sidebar">
+          <h2 className="logo">Admin</h2>
+          <nav>
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? "active" : ""}`
+                }
+                end // 👈 ensures exact match for /admin
+              >
+                <span className="icon">{item.icon}</span>
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+        </aside>
 
-      {/* Main Area */}
-      <main className="content">
-         <header className="topbar">
-          <h1>Dashboard Overview</h1>
-          <div className="profile">Admin 👤</div>
-        </header>
-        <Outlet />
-      </main>
-    </div>
+        {/* Main Area */}
+        <main className="content">
+          <header className="topbar">
+            <h1>Dashboard Overview</h1>
+
+            <div
+              className="user-info"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              {user ? (
+                <span className="username">
+                  Welcome, {user.name} 👋
+                </span>
+              ) : (
+                <span>Guest</span>
+              )}
+
+              {/* Dropdown (mobile) */}
+              {dropdownOpen && (
+                <div className="dropdown">
+                  <button onClick={logout}>Logout</button>
+                </div>
+              )}
+            </div>
+          </header>
+          <Outlet />
+        </main>
+      </div>
+      <Footer />
+    </>
   );
 };
 

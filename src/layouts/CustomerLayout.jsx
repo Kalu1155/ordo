@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Footer from "../component/Footer";
+import { FaUtensils } from "react-icons/fa";
 
 const CustomerLayout = () => {
   const { user, logout } = useContext(AuthContext);
@@ -48,7 +49,15 @@ const CustomerLayout = () => {
         <div className="main-area">
           {/* Top Navbar */}
           <header className="topbar">
-            {/* Left: Toggle (only mobile) */}
+             {/* Desktop Logout button */}
+            <Link to="/">
+                   <div className="logo">
+                     {/* <img src={logo} alt="" /> */}
+                     <FaUtensils size={24} color="var(--primary)" />
+                     <span>RestoManage</span>
+                   </div>
+                 </Link>
+
             <button
               className="menu-toggle"
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -77,12 +86,7 @@ const CustomerLayout = () => {
               )}
             </div>
 
-            {/* Desktop Logout button */}
-            {user && (
-              <button className="btn btn-danger desktop-only" onClick={logout}>
-                Logout
-              </button>
-            )}
+           
           </header>
 
           {/* Page Content */}
