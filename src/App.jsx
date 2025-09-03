@@ -49,19 +49,19 @@ function App() {
 
           {/* Customer Dashboard (Private) */}
           <Route
-  path="/customer"
-  element={
-    <ProtectedRoute allowedRoles={["customer"]}>
-      <CustomerLayout />
-    </ProtectedRoute>
-  }
->
-  <Route index element={<Home />} /> {/* /customer */}
-  <Route path="orders" element={<OrderHistory />} /> 
-  <Route path="profile" element={<ProfilePage />} /> 
-  <Route path="cart" element={<CartPage />} />
-  <Route path="checkout" element={<CheckoutPage />} /> 
-</Route>
+            path="/customer"
+            element={
+              <ProtectedRoute allowedRoles={["customer"]}>
+                <CustomerLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Home />} /> {/* /customer */}
+            <Route path="orders" element={<OrderHistory />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="cart" element={<CartPage />} />
+            <Route path="checkout" element={<CheckoutPage />} />
+          </Route>
 
 
           {/* Staff Dashboard (Private) */}
