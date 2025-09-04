@@ -1,0 +1,61 @@
+.dashboard-home {
+  padding: 2rem;
+
+  .welcome-banner {
+    background: var(--primary-light, #f9f9f9);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .action-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+      transition: 0.2s ease;
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+    }
+  }
+
+  .specials {
+    margin-bottom: 2rem;
+
+    .specials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .special-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      img {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .recent-orders {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+}

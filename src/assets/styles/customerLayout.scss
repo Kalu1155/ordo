@@ -1,6 +1,5 @@
 @use "./variables" as *;
 
-
 .customer-layout {
   display: flex;
   min-height: 100vh;
@@ -13,6 +12,8 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    transition: transform 0.3s ease-in-out;
+    z-index: 2000;
 
     .logo {
       text-align: center;
@@ -50,53 +51,31 @@
         }
       }
     }
-  }
-
-  .content {
-    flex: 1;
-    padding: 2rem;
-    background: #f9f9f9;
-  }
-}
-
-
-.customer-layout {
-  display: flex;
-  min-height: 100vh;
-
-  .sidebar {
-    width: 220px;
-    background: var(--primary);
-    color: #fff;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    transition: left 0.3s ease;
 
     .close-btn {
       display: none;
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      color: #fff;
-      cursor: pointer;
-      margin-bottom: 1rem;
     }
 
+    /* 📱 Mobile Sidebar */
     @media (max-width: $mobile) {
       position: fixed;
       top: 0;
-      left: -220px;
+      left: 0;
       height: 100%;
-      z-index: 1000;
+      transform: translateX(-100%);
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
 
       &.open {
-        left: 0;
+        transform: translateX(0);
       }
 
       .close-btn {
         display: block;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
         align-self: flex-end;
       }
     }
@@ -104,28 +83,18 @@
 
   .main-area {
     flex: 1;
-    padding: 2rem;
-    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
 
-    @media (max-width: $mobile) {
-      padding: 1rem;
+    .content {
+      flex: 1;
+      padding: 2rem;
+      background: #f9f9f9;
+
+      @media (max-width: $mobile) {
+        padding: 1rem;
+      }
     }
-  }
-}
-
-/* Mobile menu toggle */
-.menu-toggle {
-  display: none;
-
-  @media (max-width: $mobile) {
-    display: block;
-    background: var(--primary);
-    color: #fff;
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 1rem;
   }
 }
 
@@ -133,42 +102,78 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 0.8rem 1.5rem;
   background: #fff;
   border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  /* Left section (logo + toggle) */
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1.2rem;
+
+    span {
+      @media (max-width: $mobile) {
+        display: none; // hide text on mobile
+      }
+    }
+  }
 
   .menu-toggle {
     display: none;
 
     @media (max-width: $mobile) {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: var(--primary);
       color: #fff;
-      font-size: 1.5rem;
-      padding: 0.5rem 1rem;
+      font-size: 1.3rem;
+      padding: 0.4rem 0.7rem;
       border-radius: 6px;
       cursor: pointer;
     }
   }
 
+  /* Right section (user info) */
   .user-info {
     position: relative;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 
     .username {
       font-weight: 500;
       color: var(--primary);
+      font-size: 0.95rem;
+
+      @media (max-width: $mobile) {
+        font-size: 0.85rem;
+      }
     }
 
     .dropdown {
       position: absolute;
-      top: 110%;
+      top: 120%;
       right: 0;
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 6px;
       padding: 0.5rem 1rem;
-      z-index: 1000;
+      z-index: 2001;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
       button {
         background: none;
@@ -183,10 +188,5 @@
       }
     }
   }
-
-  .desktop-only {
-    @media (max-width: $mobile) {
-      display: none;
-    }
-  }
 }
+

@@ -9,20 +9,20 @@ const AdminDashboard = () => {
         <section className="content">
           <div className="cards">
             <div className="card">
-              <h3>Total Orders</h3>
+              <h4>Total Orders</h4>
               <p>120</p>
             </div>
             <div className="card">
-              <h3>Reservations</h3>
+              <h4>Reservations</h4>
               <p>35</p>
             </div>
             <div className="card">
-              <h3>Active Staff</h3>
+              <h4>Active Staff</h4>
               <p>5</p>
             </div>
             <div className="card">
-              <h3>Revenue</h3>
-              <p>$4,250</p>
+              <h4>Revenue</h4>
+              <p>₦4,250</p>
             </div>
           </div>
         </section>

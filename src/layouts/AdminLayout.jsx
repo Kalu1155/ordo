@@ -20,24 +20,28 @@ const AdminLayout = () => {
     <>
       <div className="admin-layout">
         {/* Sidebar */}
-        <aside className="sidebar">
-          <h2 className="logo">Admin</h2>
-          <nav>
-            {navItems.map((item) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                end // 👈 ensures exact match for /admin
-              >
-                <span className="icon">{item.icon}</span>
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
-        </aside>
+           <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+                 <button className="close-btn" onClick={() => setSidebarOpen(false)}>
+                   ✖
+                 </button>
+                 <h2 className="logo">RMS</h2>
+                 <nav>
+                   {navItems.map((item) => (
+                     <NavLink
+                       key={item.path}
+                       to={item.path}
+                       className={({ isActive }) =>
+                         `nav-link ${isActive ? "active" : ""}`
+                       }
+                       onClick={() => setSidebarOpen(false)}
+                       end
+                     >
+                       <span className="icon">{item.icon}</span>
+                       {item.label}
+                     </NavLink>
+                   ))}
+                 </nav>
+               </aside>
 
         {/* Main Area */}
         <main className="content">

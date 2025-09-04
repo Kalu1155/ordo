@@ -20,13 +20,13 @@ const Navbar = () => {
       </Link>
 
       <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/menu">Menu</Link></li>
-        <li><Link to="/reservations">Reservations</Link></li>
-        <li><Link to="/location">Location</Link></li>
+        <li><Link to="/">🏠Home</Link></li>
+        <li><Link to="/menu">🍽️Menu</Link></li>
+        <li><Link to="/reservations">📅Reservations</Link></li>
+        <li><Link to="/location">📍Location</Link></li>
 
         {!user && <li><Link to="/auth">Login</Link></li>}
-        {user && <li><Link to="/customer">Dashboard</Link></li>}
+        {user && <li><Link to="/customer">🧑Dashboard</Link></li>}
       </ul>
 
       {/* mobile nav */}

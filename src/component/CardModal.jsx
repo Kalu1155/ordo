@@ -1,51 +1,63 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import food from "../assets/img/food_3.jpeg"
+import { toast } from "react-toastify";   // ✅ make sure toast is imported
+import food from "../assets/img/food_3.jpeg";
 
 const CardModal = ({ show, onHide, dish }) => {
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useContext(CartContext);
-  const AddedToCart = (dish) => {
-      addToCart(dish);
-      toast.success("Added to cart ✅");
-    };
-  
+
+  // Reset quantity whenever modal closes
+  useEffect(() => {
+    if (!show) setQuantity(1);
+  }, [show]);
+
+  const handleAddToCart = () => {
+    try {
+      addToCart(dish, quantity);
+      toast.success(`${quantity} × ${dish.name} added to cart ✅`);
+    } catch (err) {
+      console.error(err);
+      toast.error("Could not add to cart ❌");
+    } finally {
+      onHide(); // ✅ always trigger close
+    }
+  };
+
   return (
-    <Modal
-      show={show}
-      onHide={onHide}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal show={show} onHide={onHide} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {dish.name}
-        </Modal.Title>
+        <Modal.Title>{dish?.name}</Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         <div className="row">
           <div className="menuimg col-md-6">
             <img
-              src={dish.image}
-              // src={food}
-              alt={dish.name}
-              style={{ width: "100%", borderRadius: "10px", marginBottom: "1rem" }}
+              src={dish?.image || food}
+              alt={dish?.name}
+              style={{
+                width: "100%",
+                borderRadius: "10px",
+                marginBottom: "1rem",
+              }}
             />
           </div>
           <div className="menudesc col-md-5">
-            <h5 className="mt-4"><b>Food Description</b>: </h5>
-            <p>{dish.description}</p>
-            <h5 className="my-4"><b>Price</b>:₦{dish.price.toFixed(2)}</h5>
-            <h5 className="my-4"><b>Category</b>:{dish.category.join(', ')}</h5>
-              <label htmlFor="Quant" className="mt-4 mx-2"><b>Quantity:</b></label>
-            <div className="quantity mt-3">
+            <h5 className="mt-4"><b>Food Description</b>:</h5>
+            <p>{dish?.description}</p>
+            <h5 className="my-4"><b>Price</b>: ₦{dish?.price.toFixed(2)}</h5>
+            <h5 className="my-4"><b>Category</b>: {dish?.category?.join(", ")}</h5>
+
+            <label htmlFor="Quant" className="mt-4 mx-2">
+              <b>Quantity:</b>
+            </label>
+             <div className="quantity mt-3">
               <button className="quantity-minus qty-btn"
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}>
                 <i>-</i>
-                  </button>
+              </button>
               <input
                 type="number"
                 className="qty-input"
@@ -62,14 +74,14 @@ const CardModal = ({ show, onHide, dish }) => {
                 <i>+</i>
               </button>
             </div>
-             
           </div>
         </div>
       </Modal.Body>
+
       <Modal.Footer>
-       <button className="btn btn-primary" onClick={() => AddedToCart(dish)}>
-                  Add to Cart
-                </button>
+        <button className="btn btn-primary" onClick={handleAddToCart}>
+          Add {quantity} × {dish?.name} to Cart
+        </button>
       </Modal.Footer>
     </Modal>
   );

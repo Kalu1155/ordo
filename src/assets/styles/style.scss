@@ -17,7 +17,8 @@
 @use "dashboardLayout.scss";
 @use "global.scss";
 @use "./variables" as *;
-@use 'home.scss';
+@use 'location.scss';
+@use "customerdashboardhome.scss";
 
 :root {
   --primary: #4CAF50; // green (brand)

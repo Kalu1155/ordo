@@ -1,0 +1,69 @@
+.location-page {
+  h2 {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--secondary);
+  }
+
+  .location-layout {
+    display: flex;
+    gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .restaurant-list {
+    flex: 1;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .restaurant-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+
+      &.active {
+        border: 2px solid var(--primary);
+      }
+
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .info {
+        h4 {
+          margin: 0;
+          color: var(--primary);
+        }
+        p {
+          margin: 2px 0;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .map-container {
+    flex: 2;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}

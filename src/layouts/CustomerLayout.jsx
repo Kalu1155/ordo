@@ -48,46 +48,42 @@ const CustomerLayout = () => {
         {/* Main Area */}
         <div className="main-area">
           {/* Top Navbar */}
-          <header className="topbar">
-             {/* Desktop Logout button */}
-            <Link to="/">
-                   <div className="logo">
-                     {/* <img src={logo} alt="" /> */}
-                     <FaUtensils size={24} color="var(--primary)" />
-                     <span>RestoManage</span>
-                   </div>
-                 </Link>
+         <header className="topbar">
+  <div className="left-section">
+    <Link to="/">
+      <div className="logo">
+        <FaUtensils size={24} color="var(--primary)" />
+        <span>RestoManage</span>
+      </div>
+    </Link>
 
-            <button
-              className="menu-toggle"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-            >
-              ☰
-            </button>
+    <button
+      className="menu-toggle"
+      onClick={() => setSidebarOpen(!sidebarOpen)}
+    >
+      ☰
+    </button>
+  </div>
 
-            {/* Right: User info */}
-            <div
-              className="user-info"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            >
-              {user ? (
-                <span className="username">
-                  Welcome, {user.name} 👋
-                </span>
-              ) : (
-                <span>Guest</span>
-              )}
+  {/* Right: User info */}
+  <div
+    className="user-info"
+    onClick={() => setDropdownOpen(!dropdownOpen)}
+  >
+    {user ? (
+      <span className="username">Welcome, {user.name} 👋</span>
+    ) : (
+      <span>Guest</span>
+    )}
 
-              {/* Dropdown (mobile) */}
-              {dropdownOpen && (
-                <div className="dropdown">
-                  <button onClick={logout}>Logout</button>
-                </div>
-              )}
-            </div>
+    {dropdownOpen && (
+      <div className="dropdown">
+        <button onClick={logout}>Logout</button>
+      </div>
+    )}
+  </div>
+</header>
 
-           
-          </header>
 
           {/* Page Content */}
           <main className="content">

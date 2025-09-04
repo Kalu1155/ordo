@@ -122,11 +122,25 @@
   }
 
   .cta-final {
+    position: relative;
     padding: 3rem;
     text-align: center;
-    background: var(--primary);
+    // background: var(--primary);
+    background-image: url(../img/food_2.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
-
+    margin-bottom: 2rem;
+     .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 12px;
+    }
+    .cta-content{
+        position: relative;
+      z-index: 1;
+    }
     .btn {
       margin-top: 1rem;
       background: #fff;

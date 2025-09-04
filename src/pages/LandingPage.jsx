@@ -92,8 +92,11 @@ const LandingPage = () => {
           </ol>
         </section>
         <section className="cta-final">
-          <h2>Ready to experience smarter dining?</h2>
+          <div className="overlay"></div>
+        <div className="cta-content">
+            <h2>Ready to experience smarter dining?</h2>
           <Link to="/reservation" className="btn btn-primary">Reserve Now</Link>
+        </div>
         </section>
         
       </div>
