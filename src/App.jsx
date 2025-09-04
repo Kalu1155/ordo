@@ -27,6 +27,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from './pages/Home';
 import LocationPage from './pages/LocationPage';
+import OrdersPage from './pages/staff/OrdersPage';
+import ReservationsPage from './pages/staff/ReservationsPage';
 
 function App() {
   useEffect(() => {
@@ -74,8 +76,8 @@ function App() {
             }
           >
             <Route index element={<StaffDashboard />} />
-            <Route path="orders" element={<StaffDashboard />} />
-            <Route path="reservations" element={<StaffDashboard />} />
+          <Route path="orders" element={<OrdersPage />} />
+  <Route path="reservations" element={<ReservationsPage />} />
           </Route>
 
           {/* Admin Dashboard (Private) */}

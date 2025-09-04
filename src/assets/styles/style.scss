@@ -19,6 +19,7 @@
 @use "./variables" as *;
 @use 'location.scss';
 @use "customerdashboardhome.scss";
+@use "admin.scss";
 
 :root {
   --primary: #4CAF50; // green (brand)

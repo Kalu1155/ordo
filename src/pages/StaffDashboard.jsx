@@ -1,75 +1,54 @@
-import React, { useState } from "react";
+import React, { useContext, useMemo } from "react";
+import { OrderContext } from "../context/OrderContext";
+import { Link } from "react-router-dom";
+
+const StatCard = ({ title, value, className }) => (
+  <div className={`stat-card ${className || ""}`}>
+    <div className="title">{title}</div>
+    <div className="value">{value}</div>
+  </div>
+);
 
 const StaffDashboard = () => {
-  const [orders, setOrders] = useState([
-    { id: 1, customer: "John Doe", items: ["Burger", "Fries"], status: "Pending" },
-    { id: 2, customer: "Jane Smith", items: ["Pizza"], status: "In Progress" },
-  ]);
+  const { orders, reservations } = useContext(OrderContext);
 
-  const [reservations, setReservations] = useState([
-    { id: 1, name: "Alice", date: "2025-08-20", time: "19:00", guests: 2 },
-    { id: 2, name: "Bob", date: "2025-08-21", time: "20:30", guests: 4 },
-  ]);
+  const pendingCount = orders.filter((o) => o.status === "Pending").length;
+  const preparingCount = orders.filter((o) => o.status === "Preparing").length;
+  const readyCount = orders.filter((o) => o.status === "Ready").length;
 
-  const updateOrderStatus = (id, newStatus) => {
-    setOrders(orders.map(o => o.id === id ? { ...o, status: newStatus } : o));
-  };
+  const revenue = orders.reduce((s, o) => s + (Number(o.total) || 0), 0);
 
   return (
-    <div className="staff-dashboard">
-      <h2>👨‍🍳 Staff Dashboard</h2>
+    <div className="staff-dashboard container">
+      <h2>Staff Dashboard</h2>
 
-      {/* Orders Section */}
-      <section className="orders-section">
-        <h3>Orders</h3>
-        <table className="orders-table">
-          <thead>
-            <tr>
-              <th>Customer</th>
-              <th>Items</th>
-              <th>Status</th>
-              <th>Update</th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map(o => (
-              <tr key={o.id}>
-                <td>{o.customer}</td>
-                <td>{o.items.join(", ")}</td>
-                <td>{o.status}</td>
-                <td>
-                  <button className="btn btn-primary" onClick={() => updateOrderStatus(o.id, "In Progress")}>In Progress</button>
-                  <button className="btn btn-success" onClick={() => updateOrderStatus(o.id, "Completed")}>Completed</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+      <div className="stats-grid">
+        <StatCard title="Pending Orders" value={pendingCount} />
+        <StatCard title="Preparing" value={preparingCount} />
+        <StatCard title="Ready" value={readyCount} />
+        <StatCard title="Reservations" value={reservations.length} />
+        <StatCard title="Revenue (₦)" value={`₦${revenue.toFixed(2)}`} />
+      </div>
 
-      {/* Reservations Section */}
-      <section className="reservations-section">
-        <h3>Reservations</h3>
-        <table className="reservation-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Guests</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reservations.map(r => (
-              <tr key={r.id}>
-                <td>{r.name}</td>
-                <td>{r.date}</td>
-                <td>{r.time}</td>
-                <td>{r.guests}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <section className="recent">
+        <h3>Recent Orders</h3>
+        <div className="recent-list">
+          {orders.slice(0, 6).map((o) => (
+            <div className="order-card" key={o.id}>
+              <div className="head">
+                <strong>#{o.id}</strong> <span className="status">{o.status}</span>
+              </div>
+              <div className="body">
+                <div className="cust">{o.customer?.name}</div>
+                <div className="items">{o.items.map(i => `${i.quantity}×${i.name}`).join(", ")}</div>
+                <div className="total">₦{(Number(o.total) || 0).toFixed(2)}</div>
+              </div>
+              <div className="actions">
+                <Link to={`/staff/orders`} className="btn">Manage</Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );
